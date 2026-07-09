@@ -37,9 +37,13 @@
     <nav class="fixed top-0 left-0 w-full bg-white shadow-sm z-50 h-20 flex items-center">
         <div class="max-w-6xl mx-auto w-full px-4 flex justify-between items-center">
             
-            <!-- LOGO PRINCIPAL (Puxando o seu arquivo logo.jpg) -->
-            <a href="#buscar" class="flex items-center">
-                <img src="./logo.jpg" alt="EazyVoos" class="h-12 md:h-14 w-auto object-contain">
+            <!-- CANTO ESQUERDO: DESIGN EM TEXTO ANTERIOR (EAZY VOOS) -->
+            <a href="#buscar" class="flex flex-col leading-none select-none">
+                <div class="flex items-center">
+                    <span class="text-brandBlue font-black text-3xl tracking-wide">EAZY</span>
+                    <i class="fa-solid fa-plane text-brandTeal ml-1 -mt-2 transform rotate-[-45deg] text-lg"></i>
+                </div>
+                <span class="text-brandBlue font-light text-xl tracking-widest uppercase">Voos</span>
             </a>
 
             <!-- Links Centrais -->
@@ -49,13 +53,9 @@
                 <a href="#contato" class="hover:text-brandTeal transition">Contato</a>
             </div>
 
-            <!-- ÍCONE DO "Z" CRIADO EM CÓDIGO PURO -->
-            <div class="relative w-12 h-12 rounded-full bg-[#F0F0F0] shadow-sm flex items-center justify-center overflow-hidden border border-gray-200 select-none">
-                <span class="text-brandBlue font-black text-2xl italic tracking-tighter relative z-10 translate-x-[-2px]">Z</span>
-                <!-- Linha curva/rastro do avião -->
-                <div class="absolute bottom-1 left-0 w-full h-2 bg-gradient-to-r from-transparent via-brandTeal to-transparent transform -rotate-45 scale-150 opacity-90"></div>
-                <!-- Mini Aviãozinho subindo no rastro -->
-                <i class="fa-solid fa-plane text-brandTeal text-[10px] absolute top-2 right-2 transform rotate-[-45deg] z-20"></i>
+            <!-- CANTO DIREITO: SEU LOGO.JPG AQUI -->
+            <div class="flex items-center">
+                <img src="./logo.jpg" alt="EazyVoos Logo" class="h-12 md:h-14 w-auto object-contain">
             </div>
         </div>
     </nav>
@@ -64,6 +64,7 @@
     <section id="buscar" class="min-h-screen pt-20 flex flex-col justify-center items-center bg-cover bg-center px-4 relative" 
              style="background-image: url('https://images.unsplash.com/photo-1517400508447-f8dd518b86db?q=80&w=1920&auto=format&fit=crop');">
         
+        <!-- Overlay escuro para dar contraste ao formulário -->
         <div class="absolute inset-0 bg-black/20"></div>
 
         <!-- Card do Formulário -->
@@ -260,13 +261,9 @@
     <section id="contato" class="bg-brandBlue text-white pt-16 pb-8 px-4 border-b-8 border-brandTeal">
         <div class="max-w-4xl mx-auto flex flex-col items-center text-center space-y-6">
             
-            <!-- ÍCONE DO "Z" CRIADO EM CÓDIGO PURO NO RODAPÉ -->
-            <div class="relative w-16 h-16 bg-[#F0F0F0] rounded-full flex items-center justify-center shadow-md overflow-hidden p-1 border border-gray-200 select-none">
-                <span class="text-brandBlue font-black text-4xl italic tracking-tighter relative z-10 translate-x-[-3px]">Z</span>
-                <!-- Rastro curveado -->
-                <div class="absolute bottom-2 left-0 w-full h-3 bg-gradient-to-r from-transparent via-brandTeal to-transparent transform -rotate-45 scale-150 opacity-90"></div>
-                <!-- Aviãozinho -->
-                <i class="fa-solid fa-plane text-brandTeal text-sm absolute top-3 right-3 transform rotate-[-45deg] z-20"></i>
+            <!-- LA EM BAIXO: SEU LOGO.JPG NO RODAPÉ COM DESTAQUE BRANCO ELEGANTE -->
+            <div class="bg-white p-3 rounded-2xl shadow-md max-w-[200px] mx-auto mb-2">
+                <img src="./logo.jpg" alt="EazyVoos Logo Oficial" class="w-full h-auto object-contain">
             </div>
 
             <!-- Dados Operacionais da Empresa -->
