@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EazyVoos - Viagens sem acesso!</title>
+    <title>EazyVoos - Viagens sem esforço!</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Ícones do FontAwesome -->
@@ -33,29 +33,29 @@
 </head>
 <body class="bg-brandLight text-slate-800 antialiased font-sans">
 
-    <!-- MENU DE NAVEGAÇÃO SUPERIOR (ATUALIZADO) -->
+    <!-- MENU DE NAVEGAÇÃO SUPERIOR -->
     <nav class="fixed top-0 left-0 w-full bg-white shadow-sm z-50 h-20 flex items-center">
         <div class="max-w-6xl mx-auto w-full px-4 flex justify-between items-center">
             
-            <!-- Logo Texto EazyVoos -->
-            <div class="flex flex-col leading-none">
-                <div class="flex items-center">
-                    <span class="text-brandBlue font-black text-3xl tracking-wide">EAZY</span>
-                    <i class="fa-solid fa-plane text-brandTeal ml-1 -mt-2 transform rotate-[-45deg] text-lg"></i>
-                </div>
-                <span class="text-brandBlue font-light text-xl tracking-widest uppercase">Voos</span>
-            </div>
+            <!-- LOGO PRINCIPAL (Puxando o seu arquivo logo.png) -->
+            <a href="#buscar" class="flex items-center">
+                <img src="./logo.jpg" alt="EazyVoos" class="h-12 md:h-14 w-auto object-contain">
+            </a>
 
-            <!-- Links Centrais Corrigidos conforme o pedido -->
+            <!-- Links Centrais -->
             <div class="hidden md:flex gap-8 text-sm font-bold text-brandBlue">
                 <a href="#buscar" class="hover:text-brandTeal transition">Cotação</a>
                 <a href="#promocoes" class="hover:text-brandTeal transition">Ofertas</a>
                 <a href="#contato" class="hover:text-brandTeal transition">Contato</a>
             </div>
 
-            <!-- Logo Ícone Z (Direita) -->
-            <div class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center shadow-sm">
-                <span class="text-brandBlue font-black text-2xl italic">Z</span>
+            <!-- ÍCONE DO "Z" CRIADO EM CÓDIGO PURO (Sem precisar de imagem) -->
+            <div class="relative w-12 h-12 rounded-full bg-[#F0F0F0] shadow-sm flex items-center justify-center overflow-hidden border border-gray-200 select-none">
+                <span class="text-brandBlue font-black text-2xl italic tracking-tighter relative z-10 translate-x-[-2px]">Z</span>
+                <!-- Linha curva/rastro do avião -->
+                <div class="absolute bottom-1 left-0 w-full h-2 bg-gradient-to-r from-transparent via-brandTeal to-transparent transform -rotate-45 scale-150 opacity-90"></div>
+                <!-- Mini Aviãozinho subindo no rastro -->
+                <i class="fa-solid fa-plane text-brandTeal text-[10px] absolute top-2 right-2 transform rotate-[-45deg] z-20"></i>
             </div>
         </div>
     </nav>
@@ -264,9 +264,13 @@
     <section id="contato" class="bg-brandBlue text-white pt-16 pb-8 px-4 border-b-8 border-brandTeal">
         <div class="max-w-4xl mx-auto flex flex-col items-center text-center space-y-6">
             
-            <!-- Ícone Z Centralizado -->
-            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-2 shadow-md">
-                <span class="text-brandBlue font-black text-3xl italic">Z</span>
+            <!-- ÍCONE DO "Z" CRIADO EM CÓDIGO PURO NO RODAPÉ -->
+            <div class="relative w-16 h-16 bg-[#F0F0F0] rounded-full flex items-center justify-center shadow-md overflow-hidden p-1 border border-gray-200 select-none">
+                <span class="text-brandBlue font-black text-4xl italic tracking-tighter relative z-10 translate-x-[-3px]">Z</span>
+                <!-- Rastro curveado -->
+                <div class="absolute bottom-2 left-0 w-full h-3 bg-gradient-to-r from-transparent via-brandTeal to-transparent transform -rotate-45 scale-150 opacity-90"></div>
+                <!-- Aviãozinho -->
+                <i class="fa-solid fa-plane text-brandTeal text-sm absolute top-3 right-3 transform rotate-[-45deg] z-20"></i>
             </div>
 
             <!-- Dados Operacionais da Empresa -->
@@ -396,7 +400,7 @@
         const inputVolta = document.getElementById('data-volta');
         const formBusca = document.getElementById('form-busca');
 
-        // Seu número de contato configurado
+        // Configuração do WhatsApp Oficial da EazyVoos
         const NUMERO_WHATSAPP = "5551989505276"; 
 
         // 1. DINÂMICA DAS DATAS
@@ -468,19 +472,19 @@
             const dataIda = formatarData(document.getElementById('data-ida').value);
             const dataVolta = formatarData(inputVolta.value);
 
-            let mensagem = `Olá *EazyVoos*! Gostaria de solicitar uma cotação de passagem aérea:\n\n`;
-            mensagem += `✈️ *Tipo:* ${tipoVoo}\n`;
-            mensagem += `📍 *Origem:* ${origem}\n`;
-            mensagem += `🏁 *Destino:* ${destino}\n`;
-            mensagem += `📅 *Data de Ida:* ${dataIda}\n`;
+            let message = `Olá *EazyVoos*! Gostaria de solicitar uma cotação de passagem aérea:\n\n`;
+            message += `✈️ *Tipo:* ${tipoVoo}\n`;
+            message += `📍 *Origem:* ${origem}\n`;
+            message += `🏁 *Destino:* ${destino}\n`;
+            message += `📅 *Data de Ida:* ${dataIda}\n`;
             
             if (radioIdaVolta.checked) {
-                mensagem += `📅 *Data de Volta:* ${dataVolta}\n`;
+                message += `📅 *Data de Volta:* ${dataVolta}\n`;
             }
 
-            mensagem += `\nAguardo as melhores opções! Obrigado.`;
+            message += `\nAguardo as melhores opções! Obrigado.`;
 
-            const mensagemFormatada = encodeURIComponent(mensagem);
+            const mensagemFormatada = encodeURIComponent(message);
             const linkWhatsApp = `https://api.whatsapp.com/send?phone=${NUMERO_WHATSAPP}&text=${mensagemFormatada}`;
 
             window.open(linkWhatsApp, '_blank');
