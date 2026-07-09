@@ -1,1 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EazyVoos - Viagens sem esforço!</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Ícones do FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Montserrat (para simular a Eazy Sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Configurando as cores da marca no Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'] },
+                    colors: {
+                        brandBlue: '#004080',
+                        brandTeal: '#00C0A0',
+                        brandOrange: '#FFBC00',
+                        brandLight: '#F0F0F0',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilizando o botão de rádio personalizado (Ida/Volta) */
+        input[type="radio"] { accent-color: #004080; }
+    </style>
+</head>
+<body class="bg-brandLight text-slate-800 antialiased font-sans">
 
+    <!-- MENU DE NAVEGAÇÃO SUPERIOR -->
+    <nav class="fixed top-0 left-0 w-full bg-white shadow-sm z-50 h-20 flex items-center">
+        <div class="max-w-6xl mx-auto w-full px-4 flex justify-between items-center">
+            
+            <!-- Logo Texto -->
+            <div class="flex flex-col leading-none">
+                <div class="flex items-center">
+                    <span class="text-brandBlue font-black text-3xl tracking-wide">EAZY</span>
+                    <i class="fa-solid fa-plane text-brandTeal ml-1 -mt-2 transform rotate-[-45deg] text-lg"></i>
+                </div>
+                <span class="text-brandBlue font-light text-xl tracking-widest uppercase">Voos</span>
+            </div>
+
+            <!-- Links Centrais (Escondido no celular) -->
+            <div class="hidden md:flex gap-8 text-sm font-semibold text-brandBlue">
+                <a href="#buscar" class="hover:text-brandTeal transition">Destinos</a>
+                <a href="#promocoes" class="hover:text-brandTeal transition">Minhas Reservas</a>
+                <a href="#contato" class="hover:text-brandTeal transition">Contato</a>
+            </div>
+
+            <!-- Logo Ícone Z (Direita) -->
+            <div class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center shadow-sm">
+                <span class="text-brandBlue font-black text-2xl italic">Z</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SESSÃO 1: FORMULÁRIO DE BUSCA COM FUNDO DE NUVENS -->
+    <!-- URL de imagem de nuvens genérica do Unsplash para simular o design -->
+    <section id="buscar" class="min-h-screen pt-20 flex flex-col justify-center items-center bg-cover bg-center px-4 relative" 
+             style="background-image: url('https://images.unsplash.com/photo-1517400508447-f8dd518b86db?q=80&w=1920&auto=format&fit=crop');">
+        
+        <!-- Overlay escuro para dar contraste -->
+        <div class="absolute inset-0 bg-black/20"></div>
+
+        <!-- Card do Formulário -->
+        <div class="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-6 md:p-8 space-y-6 my-8">
+            
+            <form class="space-y-6">
+                <!-- Seleção: Ida ou Ida e Volta (Estilo Design) -->
+                <div class="flex justify-center gap-6 pb-2">
+                    <label class="flex items-center gap-2 cursor-pointer font-semibold text-brandBlue">
+                        <input type="radio" name="tipo_voo" value="ida_volta" id="tipo-ida-volta" checked class="w-5 h-5 cursor-pointer">
+                        Ida e Volta
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer font-semibold text-brandTeal">
+                        <input type="radio" name="tipo_voo" value="ida" id="tipo-ida" class="w-5 h-5 cursor-pointer">
+                        Somente Ida
+                    </label>
+                </div>
+
+                <!-- Inputs de Origem e Destino -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Origem -->
+                    <div>
+                        <label class="block text-sm font-semibold text-brandBlue mb-1">Origem</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-plane-departure text-gray-400"></i>
+                            </div>
+                            <input type="text" list="aeroportos" placeholder="De onde?" class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brandTeal focus:ring-1 focus:ring-brandTeal">
+                        </div>
+                    </div>
+                    
+                    <!-- Destino -->
+                    <div>
+                        <label class="block text-sm font-semibold text-brandBlue mb-1">Destino</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-plane-arrival text-gray-400"></i>
+                            </div>
+                            <input type="text" list="aeroportos" placeholder="Para onde?" class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brandTeal focus:ring-1 focus:ring-brandTeal">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inputs de Datas -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Data de Ida -->
+                    <div>
+                        <label class="block text-sm font-semibold text-brandBlue mb-1">Data de Ida</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-regular fa-calendar text-gray-400"></i>
+                            </div>
+                            <input type="date" class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brandTeal focus:ring-1 focus:ring-brandTeal text-gray-600">
+                        </div>
+                    </div>
+
+                    <!-- Data de Volta -->
+                    <div id="container-volta">
+                        <label class="block text-sm font-semibold text-brandBlue mb-1">Data de Volta</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-regular fa-calendar text-gray-400"></i>
+                            </div>
+                            <input type="date" class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brandTeal focus:ring-1 focus:ring-brandTeal text-gray-600">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botão Laranja -->
+                <button type="submit" class="w-full bg-brandOrange hover:bg-yellow-500 text-white font-bold text-lg py-4 rounded-xl transition shadow-lg mt-2">
+                    Buscar Passagens
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- SESSÃO 2: DESTINOS RECOMENDADOS (Mantendo a cor cinza clara de fundo) -->
+    <section id="promocoes" class="py-20 bg-brandLight px-4 text-center">
+        <h2 class="text-3xl font-bold text-brandBlue mb-10">Destinos Recomendados</h2>
+        
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div class="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center text-brandOrange text-2xl mb-4">
+                    <i class="fa-solid fa-suitcase"></i>
+                </div>
+                <div class="h-4 bg-gray-200 rounded w-3/4 mx-auto mb-2"></div>
+                <div class="h-3 bg-gray-100 rounded w-1/2 mx-auto"></div>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div class="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center text-brandTeal text-2xl mb-4">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <div class="h-4 bg-gray-200 rounded w-3/4 mx-auto mb-2"></div>
+                <div class="h-3 bg-gray-100 rounded w-1/2 mx-auto"></div>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div class="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center text-brandOrange text-2xl mb-4">
+                    <i class="fa-regular fa-calendar-days"></i>
+                </div>
+                <div class="h-4 bg-gray-200 rounded w-3/4 mx-auto mb-2"></div>
+                <div class="h-3 bg-gray-100 rounded w-1/2 mx-auto"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SESSÃO 3: RODAPÉ E CONTATO (Azul Escuro da Marca) -->
+    <section id="contato" class="bg-brandBlue text-white pt-16 pb-8 px-4 border-b-8 border-brandTeal">
+        <div class="max-w-4xl mx-auto flex flex-col items-center text-center space-y-6">
+            
+            <!-- Ícone Z Rodapé -->
+            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-2">
+                <span class="text-brandBlue font-black text-3xl italic">Z</span>
+            </div>
+
+            <!-- Dados de Contato -->
+            <div class="space-y-3 text-brandLight font-medium">
+                <p><i class="fa-solid fa-envelope mr-2"></i> email@eazyvoos.com.br</p>
+                <p><i class="fa-solid fa-phone mr-2"></i> (71) 5553-6530</p>
+                <p><i class="fa-solid fa-location-dot mr-2"></i> Address: T.omite - 2030</p>
+            </div>
+            
+            <!-- Instagram (Corrigido para ficar apenas o ícone branco) -->
+            <a href="https://instagram.com/eazyvoos" target="_blank" class="mt-4 text-3xl hover:text-brandTeal transition">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <!-- Linha de separação e Direitos/CNPJ -->
+            <div class="w-full border-t border-blue-800 mt-8 pt-8 text-xs text-blue-300 space-y-1">
+                <p>EAZYVOOS AGÊNCIA DE VIAGENS LTDA - CNPJ: 00.000.000/0001-00</p>
+                <p>Copyright 2026 EazyVoos Indústria.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANCO DE DADOS DE AEROPORTOS -->
+    <datalist id="aeroportos">
+        <option value="GRU - São Paulo (Guarulhos)">
+        <option value="CGH - São Paulo (Congonhas)">
+        <option value="VCP - Campinas (Viracopos)">
+        <option value="GIG - Rio de Janeiro (Galeão)">
+        <option value="SDU - Rio de Janeiro (Santos Dumont)">
+        <option value="BSB - Brasília">
+        <option value="CNF - Belo Horizonte (Confins)">
+        <option value="JFK - New York">
+        <option value="MIA - Miami, EUA">
+        <option value="LIS - Lisboa, Portugal">
+    </datalist>
+
+    <!-- LÓGICA EM JAVASCRIPT PARA OCULTAR DATA DE VOLTA -->
+    <script>
+        const radioIdaVolta = document.getElementById('tipo-ida-volta');
+        const radioIda = document.getElementById('tipo-ida');
+        const containerVolta = document.getElementById('container-volta');
+
+        function alternarDataVolta() {
+            if (radioIda.checked) {
+                containerVolta.style.display = 'none';
+            } else {
+                containerVolta.style.display = 'block';
+            }
+        }
+
+        radioIdaVolta.addEventListener('change', alternarDataVolta);
+        radioIda.addEventListener('change', alternarDataVolta);
+    </script>
+</body>
+</html>
