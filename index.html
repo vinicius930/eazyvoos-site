@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EazyVoos - Viagens sem esforço!</title>
+    <title>EazyVoos - Viagens sem acesso!</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Ícones do FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Montserrat (para simular a Eazy Sans) -->
+    <!-- Google Fonts: Montserrat (Identidade Eazy Sans) -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Configurando as cores da marca no Tailwind -->
+    <!-- Configurando as cores oficiais da marca no Tailwind -->
     <script>
         tailwind.config = {
             theme: {
@@ -28,17 +28,16 @@
         }
     </script>
     <style>
-        /* Estilizando o botão de rádio personalizado (Ida/Volta) */
         input[type="radio"] { accent-color: #004080; }
     </style>
 </head>
 <body class="bg-brandLight text-slate-800 antialiased font-sans">
 
-    <!-- MENU DE NAVEGAÇÃO SUPERIOR -->
+    <!-- MENU DE NAVEGAÇÃO SUPERIOR (ATUALIZADO) -->
     <nav class="fixed top-0 left-0 w-full bg-white shadow-sm z-50 h-20 flex items-center">
         <div class="max-w-6xl mx-auto w-full px-4 flex justify-between items-center">
             
-            <!-- Logo Texto -->
+            <!-- Logo Texto EazyVoos -->
             <div class="flex flex-col leading-none">
                 <div class="flex items-center">
                     <span class="text-brandBlue font-black text-3xl tracking-wide">EAZY</span>
@@ -47,10 +46,10 @@
                 <span class="text-brandBlue font-light text-xl tracking-widest uppercase">Voos</span>
             </div>
 
-            <!-- Links Centrais (Escondido no celular) -->
-            <div class="hidden md:flex gap-8 text-sm font-semibold text-brandBlue">
-                <a href="#buscar" class="hover:text-brandTeal transition">Destinos</a>
-                <a href="#promocoes" class="hover:text-brandTeal transition">Minhas Reservas</a>
+            <!-- Links Centrais Corrigidos conforme o pedido -->
+            <div class="hidden md:flex gap-8 text-sm font-bold text-brandBlue">
+                <a href="#buscar" class="hover:text-brandTeal transition">Cotação</a>
+                <a href="#promocoes" class="hover:text-brandTeal transition">Ofertas</a>
                 <a href="#contato" class="hover:text-brandTeal transition">Contato</a>
             </div>
 
@@ -61,19 +60,18 @@
         </div>
     </nav>
 
-    <!-- SESSÃO 1: FORMULÁRIO DE BUSCA COM FUNDO DE NUVENS -->
-    <!-- URL de imagem de nuvens genérica do Unsplash para simular o design -->
+    <!-- SESSÃO 1: FORMULÁRIO DE COTAÇÃO -->
     <section id="buscar" class="min-h-screen pt-20 flex flex-col justify-center items-center bg-cover bg-center px-4 relative" 
              style="background-image: url('https://images.unsplash.com/photo-1517400508447-f8dd518b86db?q=80&w=1920&auto=format&fit=crop');">
         
-        <!-- Overlay escuro para dar contraste -->
+        <!-- Overlay escuro para dar contraste ao formulário -->
         <div class="absolute inset-0 bg-black/20"></div>
 
         <!-- Card do Formulário -->
         <div class="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-6 md:p-8 space-y-6 my-8">
             
-            <form class="space-y-6">
-                <!-- Seleção: Ida ou Ida e Volta (Estilo Design) -->
+            <form id="form-busca" class="space-y-6">
+                <!-- Seleção Superior: Ida ou Ida e Volta -->
                 <div class="flex justify-center gap-6 pb-2">
                     <label class="flex items-center gap-2 cursor-pointer font-semibold text-brandBlue">
                         <input type="radio" name="tipo_voo" value="ida_volta" id="tipo-ida-volta" checked class="w-5 h-5 cursor-pointer">
@@ -85,57 +83,53 @@
                     </label>
                 </div>
 
-                <!-- Inputs de Origem e Destino -->
+                <!-- Inputs de Origem e Destino com Auto-sugestão -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Origem -->
                     <div>
                         <label class="block text-sm font-semibold text-brandBlue mb-1">Origem</label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i class="fa-solid fa-plane-departure text-gray-400"></i>
                             </div>
-                            <input type="text" list="aeroportos" placeholder="De onde?" class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brandTeal focus:ring-1 focus:ring-brandTeal">
+                            <input type="text" id="origem" list="aeroportos" required placeholder="De onde?" class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brandTeal focus:ring-1 focus:ring-brandTeal">
                         </div>
                     </div>
                     
-                    <!-- Destino -->
                     <div>
                         <label class="block text-sm font-semibold text-brandBlue mb-1">Destino</label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i class="fa-solid fa-plane-arrival text-gray-400"></i>
                             </div>
-                            <input type="text" list="aeroportos" placeholder="Para onde?" class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brandTeal focus:ring-1 focus:ring-brandTeal">
+                            <input type="text" id="destino" list="aeroportos" required placeholder="Para onde?" class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brandTeal focus:ring-1 focus:ring-brandTeal">
                         </div>
                     </div>
                 </div>
 
-                <!-- Inputs de Datas -->
+                <!-- Inputs de Datas Dinâmicas -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Data de Ida -->
                     <div>
                         <label class="block text-sm font-semibold text-brandBlue mb-1">Data de Ida</label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i class="fa-regular fa-calendar text-gray-400"></i>
                             </div>
-                            <input type="date" class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brandTeal focus:ring-1 focus:ring-brandTeal text-gray-600">
+                            <input type="date" id="data-ida" required class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brandTeal focus:ring-1 focus:ring-brandTeal text-gray-600">
                         </div>
                     </div>
 
-                    <!-- Data de Volta -->
                     <div id="container-volta">
                         <label class="block text-sm font-semibold text-brandBlue mb-1">Data de Volta</label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i class="fa-regular fa-calendar text-gray-400"></i>
                             </div>
-                            <input type="date" class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brandTeal focus:ring-1 focus:ring-brandTeal text-gray-600">
+                            <input type="date" id="data-volta" class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brandTeal focus:ring-1 focus:ring-brandTeal text-gray-600">
                         </div>
                     </div>
                 </div>
 
-                <!-- Botão Laranja -->
+                <!-- Botão Laranja de Envio -->
                 <button type="submit" class="w-full bg-brandOrange hover:bg-yellow-500 text-white font-bold text-lg py-4 rounded-xl transition shadow-lg mt-2">
                     Buscar Passagens
                 </button>
@@ -143,97 +137,354 @@
         </div>
     </section>
 
-    <!-- SESSÃO 2: DESTINOS RECOMENDADOS (Mantendo a cor cinza clara de fundo) -->
-    <section id="promocoes" class="py-20 bg-brandLight px-4 text-center">
-        <h2 class="text-3xl font-bold text-brandBlue mb-10">Destinos Recomendados</h2>
+    <!-- SESSÃO 2: CARROSSEL DE OFERTAS DE BAIXO CUSTO -->
+    <section id="promocoes" class="py-20 bg-brandLight px-4 text-center relative overflow-hidden select-none">
+        <h2 class="text-3xl font-bold text-brandBlue mb-2">Ofertas de Baixo Custo</h2>
+        <p class="text-slate-600 mb-10 max-w-md mx-auto px-4">Explore as melhores oportunidades e viaje pelos menores preços com suporte da EazyVoos.</p>
         
-        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Card 1 -->
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                <div class="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center text-brandOrange text-2xl mb-4">
-                    <i class="fa-solid fa-suitcase"></i>
+        <!-- Container Principal do Carrossel -->
+        <div class="relative max-w-5xl mx-auto flex items-center px-4 md:px-8">
+            
+            <!-- Botão Esquerdo < -->
+            <button id="carousel-prev" class="absolute left-0 md:left-2 z-20 bg-white hover:bg-brandTeal hover:text-white text-brandBlue w-10 h-10 rounded-full shadow-md flex items-center justify-center transition border border-gray-200 text-lg font-bold">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            
+            <!-- Janela Visível do Carrossel -->
+            <div class="w-full overflow-hidden">
+                <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out gap-4" style="transform: translateX(0px);">
+                    
+                    <!-- Card 1: Rio de Janeiro -->
+                    <div class="w-full md:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)] shrink-0 bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 text-left flex flex-col justify-between">
+                        <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=600&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Rio de Janeiro">
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-1 rounded">Nacional Promo</span>
+                                <h3 class="text-xl font-bold text-brandBlue mt-2">Rio de Janeiro</h3>
+                                <p class="text-gray-500 text-sm mt-1">Voos diretos promocionais de várias cidades.</p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs text-gray-400 block">A partir de</span>
+                                    <span class="text-xl font-black text-brandOrange">R$ 299</span>
+                                </div>
+                                <a href="#buscar" class="bg-brandBlue text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-brandTeal transition">Ver Voos</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 2: Miami & Orlando -->
+                    <div class="w-full md:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)] shrink-0 bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 text-left flex flex-col justify-between">
+                        <img src="https://images.unsplash.com/photo-1506422748879-887454f9dbf4?q=80&w=600&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Miami">
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2 py-1 rounded">EUA Imperdível</span>
+                                <h3 class="text-xl font-bold text-brandBlue mt-2">Miami & Orlando</h3>
+                                <p class="text-gray-500 text-sm mt-1">Descontos especiais para compras antecipadas.</p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs text-gray-400 block">A partir de</span>
+                                    <span class="text-xl font-black text-brandOrange">R$ 1.899</span>
+                                </div>
+                                <a href="#buscar" class="bg-brandBlue text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-brandTeal transition">Ver Voos</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Buenos Aires -->
+                    <div class="w-full md:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)] shrink-0 bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 text-left flex flex-col justify-between">
+                        <img src="https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=600&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Buenos Aires">
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">América do Sul</span>
+                                <h3 class="text-xl font-bold text-brandBlue mt-2">Buenos Aires</h3>
+                                <p class="text-gray-500 text-sm mt-1">Explore a capital portenha gastando pouquíssimo.</p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs text-gray-400 block">A partir de</span>
+                                    <span class="text-xl font-black text-brandOrange">R$ 899</span>
+                                </div>
+                                <a href="#buscar" class="bg-brandBlue text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-brandTeal transition">Ver Voos</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Cancún & Caribe -->
+                    <div class="w-full md:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)] shrink-0 bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 text-left flex flex-col justify-between">
+                        <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=600&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Caribe">
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <span class="bg-teal-100 text-teal-800 text-xs font-bold px-2 py-1 rounded">Paraíso Tropical</span>
+                                <h3 class="text-xl font-bold text-brandBlue mt-2">Cancún & Caribe</h3>
+                                <p class="text-gray-500 text-sm mt-1">Águas cristalinas com tarifas aéreas reduzidas.</p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs text-gray-400 block">A partir de</span>
+                                    <span class="text-xl font-black text-brandOrange">R$ 2.199</span>
+                                </div>
+                                <a href="#buscar" class="bg-brandBlue text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-brandTeal transition">Ver Voos</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Nova York -->
+                    <div class="w-full md:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)] shrink-0 bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 text-left flex flex-col justify-between">
+                        <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=600&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Nova York">
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <span class="bg-purple-100 text-purple-800 text-xs font-bold px-2 py-1 rounded">Estados Unidos</span>
+                                <h3 class="text-xl font-bold text-brandBlue mt-2">Nova York (JFK)</h3>
+                                <p class="text-gray-500 text-sm mt-1">Conheça a Big Apple com oportunidades únicas.</p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs text-gray-400 block">A partir de</span>
+                                    <span class="text-xl font-black text-brandOrange">R$ 2.499</span>
+                                </div>
+                                <a href="#buscar" class="bg-brandBlue text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-brandTeal transition">Ver Voos</a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="h-4 bg-gray-200 rounded w-3/4 mx-auto mb-2"></div>
-                <div class="h-3 bg-gray-100 rounded w-1/2 mx-auto"></div>
             </div>
-            <!-- Card 2 -->
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                <div class="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center text-brandTeal text-2xl mb-4">
-                    <i class="fa-solid fa-globe"></i>
-                </div>
-                <div class="h-4 bg-gray-200 rounded w-3/4 mx-auto mb-2"></div>
-                <div class="h-3 bg-gray-100 rounded w-1/2 mx-auto"></div>
-            </div>
-            <!-- Card 3 -->
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                <div class="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center text-brandOrange text-2xl mb-4">
-                    <i class="fa-regular fa-calendar-days"></i>
-                </div>
-                <div class="h-4 bg-gray-200 rounded w-3/4 mx-auto mb-2"></div>
-                <div class="h-3 bg-gray-100 rounded w-1/2 mx-auto"></div>
-            </div>
+            
+            <!-- Botão Direito > -->
+            <button id="carousel-next" class="absolute right-0 md:right-2 z-20 bg-white hover:bg-brandTeal hover:text-white text-brandBlue w-10 h-10 rounded-full shadow-md flex items-center justify-center transition border border-gray-200 text-lg font-bold">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            
         </div>
     </section>
 
-    <!-- SESSÃO 3: RODAPÉ E CONTATO (Azul Escuro da Marca) -->
+    <!-- SESSÃO 3: CONTATO E REFERÊNCIAS -->
     <section id="contato" class="bg-brandBlue text-white pt-16 pb-8 px-4 border-b-8 border-brandTeal">
         <div class="max-w-4xl mx-auto flex flex-col items-center text-center space-y-6">
             
-            <!-- Ícone Z Rodapé -->
-            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-2">
+            <!-- Ícone Z Centralizado -->
+            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-2 shadow-md">
                 <span class="text-brandBlue font-black text-3xl italic">Z</span>
             </div>
 
-            <!-- Dados de Contato -->
+            <!-- Dados Operacionais da Empresa -->
             <div class="space-y-3 text-brandLight font-medium">
-                <p><i class="fa-solid fa-envelope mr-2"></i> email@eazyvoos.com.br</p>
-                <p><i class="fa-solid fa-phone mr-2"></i> (71) 5553-6530</p>
-                <p><i class="fa-solid fa-location-dot mr-2"></i> Address: T.omite - 2030</p>
+                <p><i class="fa-solid fa-envelope mr-2 text-brandTeal"></i> contato@eazyvoos.com.br</p>
+                <p><i class="fa-solid fa-phone mr-2 text-brandTeal"></i> (51) 98950-5276</p>
+                <p><i class="fa-solid fa-location-dot mr-2 text-brandTeal"></i> Atendimento Digital / Todo o Brasil</p>
             </div>
             
-            <!-- Instagram (Corrigido para ficar apenas o ícone branco) -->
-            <a href="https://instagram.com/eazyvoos" target="_blank" class="mt-4 text-3xl hover:text-brandTeal transition">
+            <!-- Redes Sociais: Instagram Oficial -->
+            <a href="https://instagram.com/eazyvoos" target="_blank" rel="noopener noreferrer" class="mt-4 text-3xl hover:text-brandTeal transition transform hover:scale-110">
                 <i class="fa-brands fa-instagram"></i>
             </a>
 
-            <!-- Linha de separação e Direitos/CNPJ -->
+            <!-- Linha de divisão e notas legais (CNPJ / Copyright) -->
             <div class="w-full border-t border-blue-800 mt-8 pt-8 text-xs text-blue-300 space-y-1">
-                <p>EAZYVOOS AGÊNCIA DE VIAGENS LTDA - CNPJ: 00.000.000/0001-00</p>
-                <p>Copyright 2026 EazyVoos Indústria.</p>
+                <p class="uppercase tracking-wider font-semibold">EazyVoos Agência de Viagens Ltda - CNPJ: 00.000.000/0001-00</p>
+                <p>Copyright © 2026 EazyVoos Indústria. Todos os direitos reservados.</p>
             </div>
         </div>
     </section>
 
     <!-- BANCO DE DADOS DE AEROPORTOS -->
     <datalist id="aeroportos">
+        <!-- BRASIL - SUDESTE -->
         <option value="GRU - São Paulo (Guarulhos)">
         <option value="CGH - São Paulo (Congonhas)">
         <option value="VCP - Campinas (Viracopos)">
         <option value="GIG - Rio de Janeiro (Galeão)">
         <option value="SDU - Rio de Janeiro (Santos Dumont)">
-        <option value="BSB - Brasília">
         <option value="CNF - Belo Horizonte (Confins)">
-        <option value="JFK - New York">
-        <option value="MIA - Miami, EUA">
+        <option value="VIX - Vitória (Espírito Santo)">
+        <option value="RAO - Ribeirão Preto (São Paulo)">
+        <option value="UDI - Uberlândia (Minas Gerais)">
+
+        <!-- BRASIL - NORDESTE -->
+        <option value="SSA - Salvador (Bahia)">
+        <option value="BPS - Porto Seguro (Bahia)">
+        <option value="REC - Recife (Pernambuco)">
+        <option value="FOR - Fortaleza (Ceará)">
+        <option value="NAT - Natal (Rio Grande do Norte)">
+        <option value="MCZ - Maceió (Alagoas)">
+        <option value="JPA - João Pessoa (Paraíba)">
+        <option value="AJU - Aracaju (Sergipe)">
+        <option value="SLZ - São Luís (Maranhão)">
+        <option value="THE - Teresina (Piauí)">
+        <option value="JJD - Jericoacoara (Ceará)">
+
+        <!-- BRASIL - SUL -->
+        <option value="POA - Porto Alegre (Rio Grande do Sul)">
+        <option value="CWB - Curitiba (Paraná)">
+        <option value="FLN - Florianópolis (Santa Catarina)">
+        <option value="IGU - Foz do Iguaçu (Paraná)">
+        <option value="NVT - Navegantes / Beto Carrero (Santa Catarina)">
+        <option value="JOI - Joinville (Santa Catarina)">
+        <option value="XAP - Chapecó (Santa Catarina)">
+
+        <!-- BRASIL - CENTRO-OESTE -->
+        <option value="BSB - Brasília (Distrito Federal)">
+        <option value="CGB - Cuiabá (Mato Grosso)">
+        <option value="GYN - Goiânia (Goiás)">
+        <option value="CGR - Campo Grande (Mato Grosso do Sul)">
+
+        <!-- BRASIL - NORTE -->
+        <option value="MAO - Manaus (Amazonas)">
+        <option value="BEL - Belém (Pará)">
+        <option value="PVH - Porto Velho (Rondônia)">
+        <option value="RBR - Rio Branco (Acre)">
+        <option value="BVB - Boa Vista (Roraima)">
+        <option value="MCP - Macapá (Amapá)">
+        <option value="PMW - Palmas (Tocantins)">
+
+        <!-- ESTADOS UNIDOS (EUA) -->
+        <option value="JFK - Nova York, Estados Unidos">
+        <option value="EWR - Nova York (Newark), Estados Unidos">
+        <option value="MIA - Miami, Estados Unidos">
+        <option value="MCO - Orlando, Estados Unidos">
+        <option value="LAX - Los Angeles, Estados Unidos">
+        <option value="LAS - Las Vegas, Estados Unidos">
+        <option value="SFO - São Francisco, Estados Unidos">
+        <option value="BOS - Boston, Estados Unidos">
+        <option value="ORD - Chicago, Estados Unidos">
+        <option value="IAD - Washington D.C., Estados Unidos">
+        <option value="IAH - Houston, Estados Unidos">
+
+        <!-- CARIBE & AMÉRICA CENTRAL -->
+        <option value="CUN - Cancún, México">
+        <option value="PUJ - Punta Cana, República Dominicana">
+        <option value="CUR - Curaçao">
+        <option value="AUA - Aruba">
+        <option value="SXM - St. Maarten / Saint Martin">
+        <option value="PTY - Cidade do Panamá, Panamá">
+        <option value="NAS - Nassau, Bahamas">
+        <option value="HAV - Havana, Cuba">
+        <option value="VRA - Varadero, Cuba">
+        <option value="MBJ - Montego Bay, Jamaica">
+        <option value="SDQ - Santo Domingo, República Dominicana">
+        <option value="SJU - San Juan, Porto Rico">
+
+        <!-- AMÉRICA DO SUL -->
+        <option value="EZE - Buenos Aires (Ezeiza), Argentina">
+        <option value="AEP - Buenos Aires (Aeroparque), Argentina">
+        <option value="SCL - Santiago, Chile">
+        <option value="MVD - Montevidéu, Uruguai">
+        <option value="LIM - Lima, Peru">
+        <option value="BOG - Bogotá, Colômbia">
+        <option value="ASU - Assunção, Paraguai">
+
+        <!-- EUROPA & OUTROS -->
         <option value="LIS - Lisboa, Portugal">
+        <option value="OPO - Porto, Portugal">
+        <option value="MAD - Madri, Espanha">
+        <option value="BCN - Barcelona, Espanha">
+        <option value="CDG - Paris, França">
+        <option value="LHR - Londres, Reino Unido">
+        <option value="FRA - Frankfurt, Alemanha">
+        <option value="FCO - Roma, Itália">
+        <option value="AMS - Amsterdã, Holanda">
+        <option value="DXB - Dubai, Emirados Árabes">
     </datalist>
 
-    <!-- LÓGICA EM JAVASCRIPT PARA OCULTAR DATA DE VOLTA -->
+    <!-- INTELIGÊNCIA JAVASCRIPT -->
     <script>
         const radioIdaVolta = document.getElementById('tipo-ida-volta');
         const radioIda = document.getElementById('tipo-ida');
         const containerVolta = document.getElementById('container-volta');
+        const inputVolta = document.getElementById('data-volta');
+        const formBusca = document.getElementById('form-busca');
 
+        // Seu número de contato configurado
+        const NUMERO_WHATSAPP = "5551989505276"; 
+
+        // 1. DINÂMICA DAS DATAS
         function alternarDataVolta() {
             if (radioIda.checked) {
                 containerVolta.style.display = 'none';
+                inputVolta.removeAttribute('required');
             } else {
                 containerVolta.style.display = 'block';
+                inputVolta.setAttribute('required', 'true');
             }
         }
-
         radioIdaVolta.addEventListener('change', alternarDataVolta);
         radioIda.addEventListener('change', alternarDataVolta);
+        alternarDataVolta();
+
+        // 2. DINÂMICA DO CARROSSEL
+        const track = document.getElementById('carousel-track');
+        const prevBtn = document.getElementById('carousel-prev');
+        const nextBtn = document.getElementById('carousel-next');
+        let currentIndex = 0;
+
+        function moveCarousel() {
+            const items = track.children;
+            const totalItems = items.length;
+            const visibleItems = window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
+            
+            if (currentIndex > totalItems - visibleItems) {
+                currentIndex = 0; 
+            }
+            if (currentIndex < 0) {
+                currentIndex = totalItems - visibleItems;
+            }
+
+            const gap = 16; 
+            const cardWidth = items[0].getBoundingClientRect().width;
+            track.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex++;
+            moveCarousel();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex--;
+            moveCarousel();
+        });
+
+        window.addEventListener('resize', () => {
+            currentIndex = 0; 
+            moveCarousel();
+        });
+
+        // 3. ENVIO DOS DADOS PARA O WHATSAPP COM EXCELENTE VISIBILIDADE
+        formBusca.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const tipoVoo = radioIdaVolta.checked ? "Ida e Volta" : "Somente Ida";
+            const origem = document.getElementById('origem').value;
+            const destino = document.getElementById('destino').value;
+            
+            const formatarData = (dataStr) => {
+                if(!dataStr) return "";
+                const [ano, mes, dia] = dataStr.split('-');
+                return `${dia}/${mes}/${ano}`;
+            };
+
+            const dataIda = formatarData(document.getElementById('data-ida').value);
+            const dataVolta = formatarData(inputVolta.value);
+
+            let mensagem = `Olá *EazyVoos*! Gostaria de solicitar uma cotação de passagem aérea:\n\n`;
+            mensagem += `✈️ *Tipo:* ${tipoVoo}\n`;
+            mensagem += `📍 *Origem:* ${origem}\n`;
+            mensagem += `🏁 *Destino:* ${destino}\n`;
+            mensagem += `📅 *Data de Ida:* ${dataIda}\n`;
+            
+            if (radioIdaVolta.checked) {
+                mensagem += `📅 *Data de Volta:* ${dataVolta}\n`;
+            }
+
+            mensagem += `\nAguardo as melhores opções! Obrigado.`;
+
+            const mensagemFormatada = encodeURIComponent(mensagem);
+            const linkWhatsApp = `https://api.whatsapp.com/send?phone=${NUMERO_WHATSAPP}&text=${mensagemFormatada}`;
+
+            window.open(linkWhatsApp, '_blank');
+        });
     </script>
 </body>
 </html>
